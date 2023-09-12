@@ -6,7 +6,7 @@ https://learn.microsoft.com/fr-fr/aspnet/core/grpc/basics?view=aspnetcore-7.0 :w
 
 ## Créer un service gRPC ASP.NET Core :
 
-<img src="C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20230912111502315.png" alt="image-20230912111502315" style="zoom:80%;" />
+<img src="Capture d'écran 1.png" alt="image-20230912111502315" style="zoom:80%;" />
 
 ## Fichier Contrat : 
 
