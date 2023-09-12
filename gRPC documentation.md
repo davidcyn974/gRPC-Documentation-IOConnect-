@@ -62,9 +62,9 @@ Pour cela suivez ces étapes.
 
 Positionnez-vous sur le projet client, puis faites `Ajouter` , puis  `Service Connecté`. 
 
-![image-20230912141323204](Capture d'écran 2.png)
+<img src="Capture d'écran 2.png" alt="image-20230912111502316" style="zoom:100%;" />
 
-![image-20230912141449625](Capture d'écran 3.png)
+<img src="Capture d'écran 3.png" alt="image-20230912111502317" style="zoom:100%;" />
 
 Puis sélectionnez `gRPC` et cliquez sur `Suivant`.
 
@@ -80,7 +80,7 @@ Enfin sélectionnez le fichier `.proto` souhaité et cliquez sur `Terminer`.
 
 C'est ici où les appels à l'API doivent être implémentés.
 
-![image-20230912131550647](Capture d'écran 4.png)
+<img src="Capture d'écran 4.png" alt="image-20230912111502315" style="zoom:100%;" />
 
 
 
@@ -137,7 +137,7 @@ Pour l'authentification, gRPC permet d'utilser les tokens JWT.
 
 Vous aurez besoin des packages suivants : 
 
-![image-20230912134323619](Capture d'écran 5.png)
+<img src="Capture d'écran 5.png" alt="image-20230912111502315" style="zoom:100%;" />
 
 En suppposant qu'on ait le fichier authentication.proto suivant : 
 
