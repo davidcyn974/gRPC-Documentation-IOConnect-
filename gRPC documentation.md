@@ -14,9 +14,13 @@
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Fichier Contrat : 
+## Fichier Contrat  `.proto`: 
 
-Dans l'environnement .NET Core, on définit le contrat de service et les types de messages en utilisant les fichiers `.proto` [^1].
+:pushpin: Documentation officielle pour écrire un fichier `.proto` . *https://protobuf.dev/programming-guides/proto3/*
+
+
+
+Dans l'environnement .NET Core, on définit le contrat de service et les types de messages en utilisant les fichiers `.proto`.
 
 Voici un exemple de fichier `.proto` :
 
@@ -45,10 +49,6 @@ message MyResponse {
    - Dans le service on définit autant de méthodes qu'on veut. Ces méthodes correspondent aux traditionnelles 'Routes & Endpoints' en `REST`.
 3. Une section `message` correspond à ce qu'on pourrait attendre d'un `JSON` en `REST`.
    - Par la suite, on pourra par exemple accéder à **`MyRequest.Id`**, ou **`MyResponse.Body`** *(notez la majuscule à `Id` et `Body`)*.
-
-[^1]: :pushpin: Voici la <u>documentation officielle</u> pour écrire un fichier `.proto` . *https://protobuf.dev/programming-guides/proto3/*
-
-
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
