@@ -2,17 +2,17 @@
 
 
 
-## Lien vers la Documentation Officielle Windows, cliquer [ici](https://learn.microsoft.com/fr-fr/aspnet/core/grpc/basics?view=aspnetcore-7.0) :round_pushpin:
+## Lien vers la Documentation gRPC .NET Officielle , cliquer [ici](https://learn.microsoft.com/fr-fr/aspnet/core/grpc/basics?view=aspnetcore-7.0) :pushpin:
 
 
 
-## Créer un service gRPC ASP.NET Core :
+## Créer un service gRPC ASP.NET Core dans Visual Studio:
 
 <img src="Capture d'écran 1.png" alt="image-20230912111502315" style="zoom:80%;" />
 
 
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Fichier Contrat : 
 
@@ -50,7 +50,7 @@ message MyResponse {
 
 
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -72,7 +72,7 @@ Enfin sélectionnez le fichier `.proto` souhaité et cliquez sur `Terminer`.
 
 
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -125,17 +125,93 @@ public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContex
 
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Configurer HTTP et  JSON pour gRPC 
+
+:pushpin: [Lien](https://learn.microsoft.com/en-us/aspnet/core/grpc/json-transcoding-binding?view=aspnetcore-7.0) vers la documentation 
+
+Pour que le service puisse accepter les requêtes REST traditonnelles, il faut :
+
+1. Mettre le dossier 'google' du repos github à la racine de votre projet
+2. Dans le fichier .proto : 
+3. import "google/api/annotations.proto"; 
+4. Annoter les méthodes rpc 
+
+<u>Par exemple :</u>
+
+```c#
+import "google/api/annotations.proto";
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+    option (google.api.http) = {
+      get: "/v1/greeter/{name}"
+    };
+  }
+}
+```
 
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
-## Authentification
+## Configurer Swagger
+
+:pushpin: Doc° Swagger [lien](https://learn.microsoft.com/en-us/aspnet/core/grpc/json-transcoding-openapi?view=aspnetcore-7.0) 
+
+:package: Ajouter le package Swagger : https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger 
+
+Configurer le fichier de démarrage du Programme  (program.cs) :
+
+```c#
+var builder = WebApplication.CreateBuilder(args);
+
+// Begin : 
+builder.Services.AddGrpc().AddJsonTranscoding();
+builder.Services.AddGrpcSwagger();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1",
+        new OpenApiInfo { Title = "gRPC transcoding", Version = "v1" });
+    c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
+	{
+        Type = SecuritySchemeType.Http,
+        Scheme = "basic",
+        Description = "Input your username and password to access this API"
+     });
+});
+
+var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+});
+
+// End
+app.MapGrpcService<GreeterService>();
+
+app.Run();
+```
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+## Authentification grâce à un '**Token JWT**'
+
+:pushpin: Liens [tuto vidéo](https://www.youtube.com/watch?v=4-GTX6vW2Z4&t=2292s) et [repo github](https://github.com/codingdroplets/GrpcJwtAuthentication) sur l'authentification et les autorisations.
+
+
 
 Pour l'authentification, gRPC permet d'utilser les tokens JWT. 
 
-Vous aurez besoin des packages suivants : 
+:package: Vous aurez besoin des packages suivants : 
 
 <img src="Capture d'écran 5.png" alt="image-20230912111502315" style="zoom:100%;" />
 
@@ -212,7 +288,13 @@ Voici un exemple de code pour Authentifier à l'aide d'un jeton JWT.
 
 
 
-## Autorisations 
+## :no_entry_sign: :white_check_mark: Autorisations Basées sur le système de 'Rôles'
+
+:pushpin: Liens [tuto vidéo](https://www.youtube.com/watch?v=4-GTX6vW2Z4&t=2292s) et [repo github](https://github.com/codingdroplets/GrpcJwtAuthentication) sur l'authentification et les autorisations 'Rôles'.
+
+
+
+Concernant le fichier `.proto`, <u>il n'a nullement besoin d'être modifié</u>.
 
 Les autorisations se gèrent de manière 'traditionnelles' en assignant des rôles aux utilisateurs.
 
@@ -231,18 +313,19 @@ namespace GrpcServer.Services
 {
     public class CalculationService : Calculation.CalculationBase
     {
+        // Annotate
         [Authorize(Roles = "Administrator")]
         public override Task<CalculationResult> Add(InputNumbers request, ServerCallContext context)
         {
             return Task.FromResult(new CalculationResult { Result = request.Number1 + request.Number2 });
         }
-
+		// Annotate
         [Authorize(Roles = "Administrator,User")]
         public override Task<CalculationResult> Subtract(InputNumbers request, ServerCallContext context)
         {
             return Task.FromResult(new CalculationResult { Result = request.Number1 - request.Number2 });
         }
-
+		// Annotate
         [AllowAnonymous]
         public override Task<CalculationResult> Multiply(InputNumbers request, ServerCallContext context)
         {
@@ -254,15 +337,27 @@ namespace GrpcServer.Services
 
 
 
-:pushpin: Liens [tuto vidéo](https://www.youtube.com/watch?v=4-GTX6vW2Z4&t=2292s) et [repo github](https://github.com/codingdroplets/GrpcJwtAuthentication) sur l'authentification et les autorisations.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
-## Appels gRPC 
+## Tester gRPC avec <u>**Postman**</u> :love_letter: :postbox: : 
+
+:pushpin: Tuto vidéo : https://www.youtube.com/watch?v=SFBoV3n_43k
+
+:pushpin: Lien doc° : https://learn.microsoft.com/en-us/aspnet/core/grpc/test-tools?view=aspnetcore-7.0
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Système de flux en gRPC 
+
+:pushpin:  Doc : [lien](https://learn.microsoft.com/en-us/aspnet/core/grpc/client?view=aspnetcore-7.0)
 
 gRPC offre la possibilité d'échanger les informations du client et le serveur de 4 manières.
 
-Prennons ce fichier `test.proto` : 
+**1 - Echange Unaire / 2 - Réponses par flux du serveur / 3 - Requêtes par flux du client / 4 - Communication Bi-Directionnelle.**
+
+Prennons ce fichier `test.proto` : 	
 
 ```c# 
 service Greeter {
