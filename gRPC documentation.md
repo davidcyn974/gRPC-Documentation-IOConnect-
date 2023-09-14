@@ -141,10 +141,13 @@ Pour que le service puisse accepter les requêtes REST traditonnelles, il faut :
 <u>Par exemple :</u>
 
 ```c#
+// Add this line :
 import "google/api/annotations.proto";
 
 service Greeter {
-  rpc SayHello (HelloRequest) returns (HelloReply) {
+  rpc SayHello (HelloRequest) returns (HelloReply) 
+  // Add this part :
+   {
     option (google.api.http) = {
       get: "/v1/greeter/{name}"
     };
@@ -285,6 +288,8 @@ Voici un exemple de code pour Authentifier à l'aide d'un jeton JWT.
     };
 }
 ```
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
