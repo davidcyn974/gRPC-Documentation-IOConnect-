@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+
+option csharp_namespace = "GrpcService2";
+
+package greet;
+
+// The greeting service definition.
+service Greeter {
+  // Get Person's information
+  rpc GetOperation (PersonRequest) returns (PersonReply)
+   {
+    option (google.api.http) = {
+      get: "/get/{id}"
+    };
+   }
+
+  rpc PostOperation (PersonRequest) returns (Int32Response)
+   {
+    option (google.api.http) = {
+      post: "/post/{id}"
+    };
+   }
+  
+}
+
+message PersonRequest {
+  int32 id = 1;
+}
+
+message PersonReply {
+  int32 id = 1;
+  string name = 2;
+  string address = 3;
+  string message = 4;
+}
+
+message Int32Response {
+    int32 value = 1;
+}

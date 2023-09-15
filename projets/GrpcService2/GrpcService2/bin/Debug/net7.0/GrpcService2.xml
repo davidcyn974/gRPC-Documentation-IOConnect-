@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GrpcService2</name>
+    </assembly>
+    <members>
+        <member name="T:GrpcService2.GreetReflection">
+            <summary>Holder for reflection information generated from Protos/greet.proto</summary>
+        </member>
+        <member name="P:GrpcService2.GreetReflection.Descriptor">
+            <summary>File descriptor for Protos/greet.proto</summary>
+        </member>
+        <member name="F:GrpcService2.PersonRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:GrpcService2.PersonReply.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:GrpcService2.PersonReply.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:GrpcService2.PersonReply.AddressFieldNumber">
+            <summary>Field number for the "address" field.</summary>
+        </member>
+        <member name="F:GrpcService2.PersonReply.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="F:GrpcService2.Int32Response.ValueFieldNumber">
+            <summary>Field number for the "value" field.</summary>
+        </member>
+        <member name="T:GrpcService2.Greeter">
+            <summary>
+            The greeting service definition.
+            </summary>
+        </member>
+        <member name="P:GrpcService2.Greeter.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:GrpcService2.Greeter.GreeterBase">
+            <summary>Base class for server-side implementations of Greeter</summary>
+        </member>
+        <member name="M:GrpcService2.Greeter.GreeterBase.GetOperation(GrpcService2.PersonRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Get Person's information
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:GrpcService2.Greeter.BindService(GrpcService2.Greeter.GreeterBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:GrpcService2.Greeter.BindService(Grpc.Core.ServiceBinderBase,GrpcService2.Greeter.GreeterBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+    </members>
+</doc>
