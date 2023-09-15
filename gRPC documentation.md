@@ -352,6 +352,14 @@ namespace GrpcServer.Services
 
 :pushpin: Lien doc° : https://learn.microsoft.com/en-us/aspnet/core/grpc/test-tools?view=aspnetcore-7.0
 
+Tester son API avec Postman est très simple en gRPC, il suffit de signaler à Postman qu'on utilise des requêtes gRPC et non REST.
+
+Ensuite il y a deux options :
+
+Soit on lui assigne notre fichier .proto
+
+Soit on utilise "Server Reflection" et il trouve tout... Tout seul ! (cf Tuto vidéo)
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Système de flux en gRPC 
