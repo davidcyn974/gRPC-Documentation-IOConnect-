@@ -42,3 +42,5 @@ C:\Users\User\source\repos\GrpcService2\GrpcService2\obj\Debug\net7.0\GrpcServic
 C:\Users\User\source\repos\GrpcService2\GrpcService2\obj\Debug\net7.0\ref\GrpcService2.dll
 C:\Users\User\source\repos\GrpcService2\GrpcService2\bin\Debug\net7.0\GrpcService2.xml
 C:\Users\User\source\repos\GrpcService2\GrpcService2\obj\Debug\net7.0\GrpcService2.xml
+C:\Users\User\source\repos\GrpcService2\GrpcService2\bin\Debug\net7.0\Grpc.AspNetCore.Server.Reflection.dll
+C:\Users\User\source\repos\GrpcService2\GrpcService2\bin\Debug\net7.0\Grpc.Reflection.dll

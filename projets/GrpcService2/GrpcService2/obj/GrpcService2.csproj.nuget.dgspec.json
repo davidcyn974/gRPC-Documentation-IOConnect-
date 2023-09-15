@@ -42,7 +42,7 @@
           "dependencies": {
             "Google.Protobuf": {
               "target": "Package",
-              "version": "[3.21.6, )"
+              "version": "[3.23.1, )"
             },
             "Grpc.AspNetCore": {
               "target": "Package",
@@ -50,11 +50,15 @@
             },
             "Grpc.AspNetCore.Server": {
               "target": "Package",
-              "version": "[2.49.0, )"
+              "version": "[2.57.0, )"
+            },
+            "Grpc.AspNetCore.Server.Reflection": {
+              "target": "Package",
+              "version": "[2.57.0, )"
             },
             "Grpc.Core.Api": {
               "target": "Package",
-              "version": "[2.49.0, )"
+              "version": "[2.57.0, )"
             },
             "Microsoft.AspNetCore.Grpc.JsonTranscoding": {
               "target": "Package",
